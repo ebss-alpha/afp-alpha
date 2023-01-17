@@ -1,0 +1,31 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+You can apply for the £200 Alternative Fuels payment
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "have-you-received-a-payment-afp"
+  }) }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">You can apply for the £200 Alternative Fuels payment</h1>
+    <p class="govuk-body">We need to ask you additional questions so we can check you are eligible.</p>
+    <p class="govuk-body">You will need to upload proof that you use alternative fuels to heat your home.</p>
+    {{ govukButton({
+      text: "Continue",
+      href: "upload-fuel-proof"
+    }) }}
+  </div>
+</div>
+{% endblock %}

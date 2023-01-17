@@ -1,0 +1,42 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+You can’t apply for energy bills support
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+{% if data['does-your-home-have-gas'] == 'yes' %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "does-your-home-have-gas-central-heating"
+  }) }}
+{% elif data['do-you-use-one-of-these-fuels'] == 'no' %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "do-you-use-one-of-these-fuels"
+  }) }}
+{% else %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "have-you-received-a-payment-afp"
+  }) }}
+{% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">You do not need to apply for energy bills support from these schemes</h1>
+    <p class="govuk-body">You told us you are already getting the £400 Energy Bills Support Scheme discount automatically from your energy supplier.</p>
+    <p class="govuk-body">You told us you have already had the £200 alternative fuels payment automatically from your energy supplier.</p>
+    <h2 class="govuk-heading-m">Find other support</h2>
+    <p class="govuk-body">Check what other help you could get with your energy bills from the government's <a href="https://helpforhouseholds.campaign.gov.uk/help-with-your-bills/" class="govuk-link">Help for Households</a></p>
+    <p class="govuk-body">Find out if you can get support from your local council from the <a href="https://www.gov.uk/find-local-council" class="govuk-link">Household Support Fund.</a></p>
+  </div>
+</div>
+{% endblock %}

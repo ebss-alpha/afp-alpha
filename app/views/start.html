@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+{% endblock %}
+
+{% block content %}
+{% filter localise(data.locale) %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ serviceName }}</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-s">Contents</p>
+      <ul class="govuk-list">
+        <li class="govuk-body-s"><a class="govuk-link govuk-link--no-visited-state" href="#who-should-apply">Who should apply</a></li>
+        <li class="govuk-body-s"><a class="govuk-link govuk-link--no-visited-state" href="#who-cannot-apply">Who cannot apply</a></li>
+        <li class="govuk-body-s"><a class="govuk-link govuk-link--no-visited-state" href="#eligible-homes">Eligible homes</a></li>
+        <li class="govuk-body-s"><a class="govuk-link govuk-link--no-visited-state" href="#check-your-eligibility">Check your eligibility and apply online</a></li>
+        <li class="govuk-body-s"><a class="govuk-link govuk-link--no-visited-state" href="#what-you-need-to-know" class="govuk-heading-m">What you need to know</a></li>
+        <li class="govuk-body-s"><a class="govuk-link govuk-link--no-visited-state" href="#other-ways-to-apply" class="govuk-heading-m">Other ways to apply</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="govuk-grid-row govuk-!-margin-bottom-3">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-section-break govuk-section-break--visible"></div>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">Use this service to apply for £200 support to help pay for alterative fuels. You will get this support automatically and do
+      not need to apply if you:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>reasons</li>
+      </ul>
+      <p class="govuk-body">You cannot apply if you’ve already had Alternative Fuel payments</p>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 id="who-should-apply" class="govuk-heading-m">Who should apply</h2>
+      <p class="govuk-body">Content</p>
+      <p class="govuk-body">You can apply if:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you pay for the energy your household uses</li>
+        <li>you’re applying for your main, permanent home</li>
+        <li>you have a fixed address in England, Scotland or Wales</li>
+      </ul>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 id="who-cannot-apply" class="govuk-heading-m">Who cannot apply</h2>
+      <p class="govuk-body">You cannot apply for a discount if you’ve already had energy bill support or you live:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>in purpose-built student accommodation</li>
+        <li>in a care home and do not pay some of your fees</li>
+        <li>on a boat with a continuous cruising licence</li>
+        <li>on a non-permanent caravan or mobile home site</li>
+      </ul>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 id="eligible-homes" class="govuk-heading-m">Eligible homes</h2>
+      <p class="govuk-body">You may be eligible to apply if your main home is:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>in a residential park home</li>
+        <li>on a boat on a permanent residential mooring</li>
+        <li>on a permanent Gypsy and Traveller site</li>
+        <li>part of a heat network without an electricity meter</li>
+        <li>in social or private rented accommodation which has a business energy connection or a communal electricity supply</li>
+        <li>off the mains electricity or gas grid</li>
+        <li>in a care home or assisted living facility and pay for some or all of your care</li>
+        <li>in a non-domestic property which is used as a home (such as a farm or a flat above a shop)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 id="check-your-eligibility" class="govuk-heading-m">Check your eligibility and apply online</h2>
+      <p class="govuk-body">You will need:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an email address and phone number (if you have one)</li>
+        <li>your bank account details</li>
+        <li>proof that use alternative fuels</li>
+      </ul>
+      <p class="govuk-body">If you’re not registered for Council Tax, you’ll need to upload proof of address (such as a bank statement or tenancy
+        agreement) as part of your application.</p>
+        <p class="govuk-body">If you’re applying on behalf of someone else, answer questions with their details rather than your own.</p>
+        {{ govukButton({
+          text: "Start now",
+          href: "where-do-you-live",
+          isStartButton: true
+        }) }}
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 id="what-you-need-to-know" class="govuk-heading-m">What you need to know</h2>
+        <p class="govuk-body">After you apply, your local council will check you live at the address you apply for.</p>
+        <p class="govuk-body">You’ll be told about the progress of your application by email or letter. You should get a response within 4 weeks.</p>
+        <p class="govuk-body">If you’re eligible, your council will arrange a one-off payment. You do not need to repay this money.</p>
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 id="other-ways-to-apply" class="govuk-heading-m">Other ways to apply</h2>
+        <p class="govuk-body">If you cannot apply online, phone the EBSS customer support team.</p>
+        <div class="govspeak">
+          <div class="contact">
+            <p>AFP customer support team<br>
+            Telephone: <a href="tel:+44800111111">xxxx xxx xxxx</a><br>
+            Monday to Friday, 8am to 6pm<br>
+            Saturday, 9am to 1pm<br>
+            <a href="#call-charges">Find out about call charges</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfilter %}
+{% endblock %}

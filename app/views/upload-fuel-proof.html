@@ -1,0 +1,53 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Upload proof that you use alternative fuels to heat your home
+{% endblock %}
+
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "eligible-for-afp"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<form action="what-is-your-full-name">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Upload proof that you use alternative fuels to heat your home</h1>
+      <p class="govuk-body">You must upload proof that you use one of the eligible alternative fuels as the main form of heating in your home.</p> 
+      <p class="govuk-body">You must upload evidence that shows you have spent at least £200 on one of these fuels in the last 6 months. All documents must have your name and address on them.</p>
+      <p class="govuk-body">This could be a: </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>delivery note</li>
+        <li>receipt</li>
+        <li>online order confirmation</li>
+      </ul>
+      <p class="govuk-body">Your document must be:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>no more than 10 MB in size</li>
+        <li>in PDF, .jpeg, .png or .doc format</li>
+      </ul>
+      <p class="govuk-body">You can upload multiple documents.</p>
+      
+      {{ govukFileUpload({
+        id: "fuel-proof",
+        name: "fuel-proof",
+        label: {
+          text: "Upload a file"
+        }
+      }) }}
+      <p class="govuk-body">If you don't have this evidence now, you can upload it later.</p>
+      {{ govukButton({
+        text: "Confirm and continue"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}

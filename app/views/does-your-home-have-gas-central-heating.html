@@ -1,0 +1,50 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Does your home have mains gas or electric heating?
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}  {{ govukBackLink({
+    text: "Back",
+    href: "have-you-received-a-payment-ebss"
+  }) }}
+{% endblock %}
+
+
+
+{% block content %}
+<form action="mains-gas-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "does-your-home-have-gas",
+        fieldset: {
+          legend: {
+            text: "Does your home have gas central heating or electric heating?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}

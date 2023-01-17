@@ -1,0 +1,32 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+The service is currently only available in certain areas
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "find-your-address"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">The service is currently only available in certain areas
+</h1>
+    <p>You can only use this service if you live in:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Chichester District Council</li>
+      <li>Glasgow City Council</li>
+      <li>West Suffolk Council</li>
+      <li>Wrexham County Borough Council</li>
+    </ul>
+    <p>It will be available in other areas soon. More details will be available by the end of January 2023.</p>
+  </div>
+</div>
+{% endblock %}

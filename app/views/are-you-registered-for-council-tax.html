@@ -1,0 +1,60 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{% filter localise(data.locale) %}
+Are you registered for council tax at the address you are applying for?
+{% endfilter %}
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "eligible-for-ebss-af"
+  }) }}
+{% endblock %}
+
+{% block content %}
+{% filter localise(data.locale) %}
+<form action="council-tax-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-inset-text beis-inset-info">
+        If you’re applying on behalf of someone else, answer these questions with their details rather than your own.
+      </div>
+      {{ govukRadios({
+        name: "rates-or-council-tax",
+        hint: {
+          text: '<div class="govuk-!-margin-bottom-2">We share this information with your council to check you live at this address.</div>
+      <div class="govuk-!-margin-bottom-2">The person named on the council tax bill, or council tax exemption, should apply.</div>
+      <div>If no one in your household is registered, you will need to upload proof of address.</div>' | safe
+        },
+        fieldset: {
+          classes: "govuk-radios--inline",
+          legend: {
+            text: "Are you registered for council tax at the address you're applying for?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+{% endfilter %}
+{% endblock %}

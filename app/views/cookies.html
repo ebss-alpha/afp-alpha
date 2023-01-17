@@ -1,0 +1,75 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Cookies
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-body-m govuk-body">
+      <h1 class="govuk-heading-l">Cookies</h1>
+        <p>Cookies are small files saved on your phone, tablet or computer when you visit a website.</p>
+        <p>The 'Apply for energy bill support if you do not get it automatically' service uses cookies to keep our service secure, and to remember the answers you've given to questions as you proceed. They are not used to identify you personally.</p>
+
+        <h2 class="govuk-heading-m">Essential cookies</h2>
+        <p>Essential cookies keep your information secure while you use the 'Apply for energy bill support if you do not get it automatically' service and are essential for the application to work.</p>
+
+        <table class="govuk-table">
+            <caption class="govuk-visually-hidden">Essential cookies/caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Name</th>
+                    <th scope="col" class="govuk-table__header">Purpose</th>
+                    <th scope="col" class="govuk-table__header">Expires</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr role="row" class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">.AspNetCore.Antiforgery...</th>
+                    <td class="govuk-table__cell">Used by the antiforgery system.</td>
+                    <td class="govuk-table__cell">When the browsing session ends</td>
+                </tr>
+                <tr role="row" class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">ebss_application_session</th>
+                    <td class="govuk-table__cell">Used to identify user sessions and keep track of your answers. A user session starts when a user browses site for the first time.</td>
+                    <td class="govuk-table__cell">After 30 minutes of inactivity</td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="cookie-choice">
+            {{ govukRadios({
+            name: "choice",
+            classes: 'govuk-radios--inline',
+            fieldset: {
+                legend: {
+                    text: "Do you want to accept analytics cookies?",
+                    classes: "govuk-fieldset__legend--s"
+                }
+            },
+            items: [
+                {
+                    value: "accept",
+                    text: "Yes",
+                    checked: data.cookies == true
+                },
+                {
+                    value: "reject",
+                    text: "No",
+                    checked: data.cookies == false
+                }
+            ]
+            }) }}
+            {{ govukButton({
+            text: "Save cookie settings"
+            }) }}
+        </form>
+    </div>
+</div>
+{% endblock %}

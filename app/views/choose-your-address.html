@@ -1,0 +1,103 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Choose your address
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "find-your-address"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<form action="is-this-your-main-home">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call govukFieldset({
+        legend: {
+          text: "Choose your address",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+      }) %}
+      <p class="govuk-hint">We found the several addresses for the post code TT1 1AB.</p>
+      {% from "govuk/components/select/macro.njk" import govukSelect %}
+      {{ govukSelect({
+        id: "address",
+        name: "address",
+        label: {
+          text: "Address"
+        },
+        items: [
+          {
+            value: "1 Test Street, Test Town TT1 1AB",
+            text: "1 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "2 Test Street, Test Town TT1 1AB",
+            text: "2 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "3 Test Street, Test Town TT1 1AB",
+            text: "4 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "3 Test Street, Test Town TT1 1AB",
+            text: "3 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "4 Test Street, Test Town TT1 1AB",
+            text: "4 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "5 Test Street, Test Town TT1 1AB",
+            text: "5 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "6 Test Street, Test Town TT1 1AB",
+            text: "6 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "7 Test Street, Test Town TT1 1AB",
+            text: "7 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "8 Test Street, Test Town TT1 1AB",
+            text: "8 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "9 Test Street, Test Town TT1 1AB",
+            text: "9 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "10 Test Street, Test Town TT1 1AB",
+            text: "10 Test Street, Test Town TT1 1AB"
+          },
+          {
+            value: "11 Test Street, Test Town TT1 1AB",
+            text: "11 Test Street, Test Town TT1 1AB"
+          }
+        ]
+      }) }}
+      {% endcall %}
+    </div>
+  </div>
+  <div class="govuk-grid-row govuk-!-margin-bottom-4 ">
+    <div class="govuk-grid-column-two-thirds">
+      <a href="/what-is-your-address" class="govuk-link govuk-link--no-visited-state">My address isn't listed</a>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    </div>
+  </div>
+</form>
+{% endblock %}

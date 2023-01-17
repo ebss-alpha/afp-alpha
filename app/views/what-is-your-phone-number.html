@@ -1,0 +1,60 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+What is your phone number?
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "what-is-your-email-address"
+  }) }}
+{% endblock %}
+
+
+
+
+
+{% block content %}
+{% filter localise(data.locale) %}
+<form action="contact-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukInput({
+        label: {
+          text: "What is your phone number?",
+          isPageHeading: true,
+          classes: "govuk-label--l"
+        },
+        hint: {
+          text: '<div class="govuk-!-margin-bottom-2">Include a local area code for landline numbers.</div>
+          <div>The Department for Business, Energy and Industrial Strategy or your local council might use your phone number to
+            contact you about your application.</div>' | safe
+        },
+        id: "telephone-number",
+        name: "telephone-number",
+        type: "tel",
+        autocomplete: "tel",
+        classes: "govuk-input--width-20"
+      }) }}
+      {{ govukCheckboxes({
+        name: "no-phone",
+        items: [
+          {
+            value: "no-phone",
+            text: "I do not have a phone number",
+            behaviour: "exclusive"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+{% endfilter %}
+{% endblock %}

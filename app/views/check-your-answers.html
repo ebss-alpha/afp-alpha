@@ -1,0 +1,230 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers before sending your application
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "#"
+  }) }}
+{% endblock %}
+
+{% set councilTax %}
+{{ data['rates-or-council-tax'] | replace("no-council-tax", "I'm not registered for council tax at my address") | sentence }}
+{% endset %}
+
+
+{% set emailAddress %}
+{% if data['email'] %}
+{{ data['email'] }}
+{% else %}
+No email address provided
+{% endif %}
+{% endset %}
+
+{% set phoneNumber %}
+{% if data['telephone-number'] %}
+{{ data['telephone-number'] }}
+{% else %}
+No phone number provided
+{% endif %}
+{% endset %}
+
+{% set availableRows = [ { key: { text: "Name on the account" }, value: { html: data['name-on-the-account'] } }, { key: { text: "Sort code" }, value: { html: data['sort-code'] } }, { key: { text: "Account number" }, value: { html: data['account-number'] } }, { key: { text: "Building society roll number (if you have one)" }, value: { html: data['roll-number'] } } ] %}
+{% if (data['roll-number'] | length) < 1 %}
+{% set availableRows = availableRows.slice(0, 3) %}
+{% endif %}
+
+{% block content %}
+{% filter localise(data.locale) %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
+    <h2 class="govuk-heading-m">About you and your home</h2>
+
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: [
+      {
+        key: {
+          text: "Describe where you live"
+        },
+        value: {
+          html: data['dwyl-summary'] | sentence
+        },
+        actions: {
+          items: [
+            {
+              href: "what-is-your-address",
+              text: "Change",
+              visuallyHiddenText: "your answer to 'Describe where you live'"
+            }
+          ]
+        }
+      },
+        {
+          key: {
+            text: "How is your home mainly heated this winter?"
+          },
+          value: {
+            html: data['how-is-your-home-mainly-heated'] | join(', ') if data['how-is-your-home-mainly-heated'] | length > 0 else ''
+          },
+          actions: {
+            items: [
+              {
+                href: "what-is-your-address",
+                text: "Change",
+                visuallyHiddenText: "your address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Address"
+          },
+          value: {
+            html: '1 Test Street, Test Town TT1 1AB'
+          },
+          actions: {
+            items: [
+              {
+                href: "what-is-your-address",
+                text: "Change",
+                visuallyHiddenText: "your address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Is this your main home?"
+          },
+          value: {
+            html: data['is-this-your-main-home'] | capitalize
+          },
+          actions: {
+            items: [
+              {
+                href: "is-this-your-main-home",
+                text: "Change",
+                visuallyHiddenText: "your answer to 'Is this your main home?'"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Full name"
+          },
+          value: {
+            html: data['full-name']
+          },
+          actions: {
+            items: [
+              {
+                href: "what-is-your-full-name",
+                text: "Change",
+                visuallyHiddenText: "your full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Date of birth"
+          },
+          value: {
+            html: data.dob | date('Do MMMM YYYY')
+          },
+          actions: {
+            items: [
+              {
+                href: "what-is-your-date-of-birth",
+                text: "Change",
+                visuallyHiddenText: "your date of date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            html: emailAddress
+          },
+          actions: {
+            items: [
+              {
+                href: "what-is-your-email-address",
+                text: "Change",
+                visuallyHiddenText: "your email address email address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Phone number"
+          },
+          value: {
+            html: phoneNumber
+          },
+          actions: {
+            items: [
+              {
+                href: "what-is-your-phone-number",
+                text: "Change",
+                visuallyHiddenText: "your phone number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Is your name on your household's council tax bill?"
+          },
+          value: {
+            html: councilTax
+          },
+          actions: {
+            items: [
+              {
+                href: "rates-or-council-tax",
+                text: "Change",
+                visuallyHiddenText: "your answer to 'Is your name on your household's council tax bill?'"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Bank details</h2>
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: availableRows
+    }) }}
+
+    <h2 class="govuk-heading-m">Now send your application</h2>
+
+    <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+    <form action="/confirmation" novalidate>
+
+      <input type="hidden" name="answers-checked" value="true">
+
+      {{ govukButton({
+        text: "Accept and send"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endfilter %}
+{% endblock %}

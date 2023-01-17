@@ -1,0 +1,45 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your bank details before continuing
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "what-are-your-bank-account-details"
+  }) }}
+{% endblock %}
+
+{% set availableRows = [ { key: { text: "Name on the account" }, value: { html: data['name-on-the-account'] } }, { key: { text: "Sort code" }, value: { html: data['sort-code'] } }, { key: { text: "Account number" }, value: { html: data['account-number'] } }, { key: { text: "Building society roll number (if you have one)" }, value: { html: data['roll-number'] } } ] %}
+{% if (data['roll-number'] | length) < 1 %}
+{% set availableRows = availableRows.slice(0, 3) %}
+{% endif %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your bank details before continuing</h1>
+    <p class="govuk-body">Check the details below are correct before continuing.</p>
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: availableRows
+    }) }}
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Confirm and continue",
+        href: 'check-your-answers',
+        value: 'no'
+      }) }}
+      {{ govukButton({
+        text: "Change bank details",
+        href: 'what-are-your-bank-account-details',
+        value: 'yes',
+        classes: 'govuk-button--secondary'
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

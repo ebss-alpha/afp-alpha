@@ -1,0 +1,65 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+What is your full name?
+{% endblock %}
+
+{% set gotMainEbss = data['received-main-ebss'] == 'yes' %}-
+{% set useAlternativeFuel = data['do-you-use-one-of-these-fuels'] == 'yes' %}
+{% if gotMainEbss and useAlternativeFuel %}
+{% set backLink = 'upload-fuel-proof' %}
+{% elif not gotMainEbss and useAlternativeFuel %}
+{% set backLink = 'upload-fuel-proof' %}
+{% elif not gotMainEbss and not useAlternativeFuel %}
+{% set backLink = 'ebss-only' %}
+{% elif gotMainEbss and not useAlternativeFuel %}
+{% set backLink = 'cannot-apply' %}
+{% endif %}
+
+{% if data['proof-of-address-provided'] == 'yes' %}
+{% set backLink = 'upload-proof-of-address' %}
+{% else %}
+{% if data.locale == 'ni' %}
+{% set backLink = 'do-you-pay-rates' %}
+{% else %}
+{% set backLink = 'are-you-registered-for-council-tax' %}
+{% endif %}
+{% endif %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: backLink
+  }) }}
+{% endblock %}
+
+{% block content %}
+{% filter localise(data.locale) %}
+<form action="what-is-your-date-of-birth">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukInput({
+        label: {
+          text: "What is your full name?",
+          isPageHeading: true,
+          classes: "govuk-label--l"
+        },
+        hint: {
+          text: "Give your name as it appears on official accounts such as your bank account, council tax bill, or Universal Credit account."
+        },
+        id: "full-name",
+        name: "full-name",
+        autocomplete: "name"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+{% endfilter %}
+{% endblock %}

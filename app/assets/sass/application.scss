@@ -1,0 +1,61 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
+// We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
+$govuk-assets-path: '/govuk/assets/';
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import ".tmp/sass/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/contents-list";
+@import "patterns/mainstream-guide";
+@import "patterns/pagination";
+@import "patterns/related-items";
+@import "patterns/task-list";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+address {
+  @extend .govuk-body;
+  font-style: normal;
+}
+
+.letter {
+  text-transform: capitalize;
+}
+
+.supplier-section {
+  hr {
+    margin-top: govuk-spacing(6);
+    margin-bottom: govuk-spacing(3);
+  }
+}
+
+.govuk-list--alphabet {
+  display: flex;
+  flex-flow: row wrap;
+  gap: govuk-spacing(6);
+  li {
+    text-transform: capitalize;
+    width: 1rem;
+  }
+}
+
+.beis-inset-info {
+  border-color:  govuk-colour("light-blue");
+  background-color: govuk-tint(govuk-colour("light-blue"), 90);
+}
+
+.govspeak {
+  @extend .govuk-body;
+
+  .contact {
+    position: relative;
+    border-left: 1px solid $govuk-border-colour;
+    padding-left: govuk-spacing(3);
+    margin-top: govuk-spacing(6);
+    margin-bottom: govuk-spacing(6);
+  }
+}

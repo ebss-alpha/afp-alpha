@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+How is your home mainly heated this winter?
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "do-you-have-a-bank-account"
+  }) }}
+{% endblock %}
+
+{% set preamble %}
+<p>Your main form of heating is what you use most days of the week this winter.</p>
+<p>If you mainly use alternative fuels you might be eligible for the £200 alternative fuels payment. You will need to upload proof that you use them later.</p>
+<p>You can select more than one option.</p>
+{% endset %}
+
+{% block content %}
+<form action="fuel-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukCheckboxes({
+        name: "how-is-your-home-mainly-heated",
+        hint: {
+          text: preamble | safe
+        },
+        fieldset: {
+          legend: {
+            text: "How is your home mainly heated this winter?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+           {
+            text: 'Electric radiators or storage heaters',
+            value: 'electric'
+          },    
+      {
+            text: 'Gas central heating using mains gas',
+            value: 'mains-gas'
+          },
+          {
+            text: 'Gas heating using bottled gas',
+            value: 'bottled-gas'
+          },
+          {
+            text: 'Gas heating using tank or liquid petroleum gas (LPG)',
+            value: 'LPG'
+          },
+          {
+            text: 'Oil',
+            value: 'oil'
+          },
+          {
+            text: 'Wood such as logs, waste wood, or pellets',
+            value: 'wood'
+          },
+          {
+            text: 'Solid fuel such as coal',
+            value: 'solid fuel'
+          },
+          {
+            text: 'Heat network or communal heat source',
+            value: 'heat-network'
+          },
+          {
+            divider: "or"
+          },
+          {
+            text: 'None of the above',
+            behaviour: "exclusive",
+            value: 'other'
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}

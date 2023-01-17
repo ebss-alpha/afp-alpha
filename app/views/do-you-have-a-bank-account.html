@@ -1,0 +1,55 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Do you have a bank account in your name?
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "where-do-you-live"
+  }) }}
+{% endblock %}
+
+{% block content %}
+{% filter localise(data.locale) %}
+<form action="bank-account-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "do-you-have-a-bank-account",
+        fieldset: {
+          legend: {
+            text: "Do you have a bank account in your name?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          html: '<p class="govuk-hint">You need a bank account in your name to apply.</p>
+          <p class="govuk-hint">We share bank account details with your local council so we can check your identity and make payments.</p>' | safe
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+{% endfilter %}
+{% endblock %}

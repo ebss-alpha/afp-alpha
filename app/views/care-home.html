@@ -1,0 +1,54 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Do you pay for your care home fees?
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "describe-where-you-live"
+  }) }}
+
+{% endblock %}
+{% set preamble %}
+<p class="govuk-hint">
+  Select 'I pay for some or all of my care home fees myself' if a family member or friend pays on your behalf. 
+</p>
+{% endset %}
+
+{% block content %}
+<form action="situation-specific-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukRadios({
+        name: "situation-specific",
+        fieldset: {
+          legend: {
+            text: "Do you pay for your care home fees?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "pay-for-care",
+            text: "I pay for some or all my care home fees myself"
+          },
+          {
+            value: "do-not-pay-for-care",
+            text: "All of my care home fees are paid for by my Health and Social Care trust" if data.locale == 'ni' else "All my care home fees are paid for by my local council or NHS"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}

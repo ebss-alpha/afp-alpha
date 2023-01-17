@@ -1,0 +1,52 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Is this your address?
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "find-your-address"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<form action="address-confirmation-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukRadios({
+        name: "is-this-your-address",
+        hint: {
+          text: '<p class="govuk-body-l govuk-!-margin-bottom-2">1 Test Street, Test Town, TT1 1AB</p><p class="govuk-body">If this is not your address, you can enter it manually on the next page</p>' | safe
+        },
+        classes: 'govuk-radios--inline',
+        fieldset: {
+          legend: {
+            text: "Is this your address?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}

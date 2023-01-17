@@ -1,0 +1,82 @@
+
+{% extends "layout.html" %}
+
+{% if data['situation-specific'] == 'continuous-cruiser' and data['describe-where-you-live'] == 'boat' %}
+  {% set question %}
+  Do you live permanently on your boat?
+  {% endset %}
+  {% set preamble %}
+  You can only apply if you live permanently on your boat.
+  {% endset %}
+  {% else %}
+  {% set question %}
+  Is this your main home?
+  {% endset %}
+  {% set preamble %}
+  If you own additional homes, only your main home is eligible for support.
+  {% endset %}
+{% endif %}
+
+{% block pageTitle %}
+{{ question }}
+{% endblock %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+{% if data['is-this-your-address'] == 'yes' %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "is-this-your-address"
+  }) }}
+{% elif data['is-this-your-address'] == 'no' %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "what-is-your-address"
+  }) }}
+{% else %}
+{{ govukBackLink({
+  text: "Back",
+  href: "choose-your-address"
+}) }}
+{% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+<form action="home-check">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "is-this-your-main-home",
+        fieldset: {
+          legend: {
+            text: question,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: preamble  
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}
