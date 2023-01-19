@@ -9,15 +9,11 @@ You need to upload proof of address
 {% block beforeContent %}
 {{ alphaPhase() }}
 
-{% if data.locale == 'ni' %}
-{% set backLink = "do-you-pay-rates" %}
-{% else %}
-{% set backLink ="are-you-registered-for-council-tax" %}
-{% endif %}
-  {{ govukBackLink({
-    text: "Back",
-    href: backLink
-  }) }}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "are-you-registered-for-council-tax"
+}) }}
   
 {% endblock %}
 
