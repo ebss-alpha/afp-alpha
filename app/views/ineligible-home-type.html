@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Your home is not eligible for a payment from the Energy Bills Support Scheme
+You cannot apply for an Alternative Fuel payment
 {% endblock %}
 
 {% from "./alphaPhase.html" import alphaPhase %}
@@ -18,19 +18,13 @@ Your home is not eligible for a payment from the Energy Bills Support Scheme
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    {% if data.locale == 'ni' %}
-    <h1 class="govuk-heading-l">You cannot apply for a payment from the Energy Bills Support Scheme and Alternative Fuel Payment</h1>
-    <p class="govuk-body">Check what other help you could get with your energy bills at <a
-        href="https://www.nidirect.gov.uk/campaigns/cost-living" class="govuk-link">NI Direct.</a></p>
-    {% else %}
-    <h1 class="govuk-heading-l">You cannot apply for a payment from the Energy Bills Support Scheme</h1>
+    <h1 class="govuk-heading-l">You cannot apply for an Alternative Fuel payment</h1>
     <h2 class="govuk-heading-m">Find other support</h2>
     <p class="govuk-body">You may be eligible for:</p>
     <ul class="govuk-list govuk-list--bullet">
-  <li>help with your <a href="https://www.gov.uk/cost-of-living" class="govuk-link">energy bills and other living costs</a></li>
-  <li>support from your local council from the <a href="https://www.gov.uk/cost-living-help-local-council" class="govuk-link">Household Support Fund</a></li>
-</ul>
-{% endif %}
+      <li>help with your <a href="https://www.gov.uk/cost-of-living" class="govuk-link">energy bills and other living costs</a></li>
+      <li>support from your local council from the <a href="https://www.gov.uk/cost-living-help-local-council" class="govuk-link">Household Support Fund</a></li>
+    </ul>
   </div>
 </div>
 {% endblock %}

@@ -84,7 +84,7 @@ router.get(['/user-group-check'], (req, res) => {
       res.redirect('/find-your-address')
       break
     case 'care-home':
-      res.redirect('/care-home')
+      res.redirect('/ineligible-home-type')
       break
     case 'boat':
       res.redirect('/boat')
