@@ -35,14 +35,12 @@ Upload proof that you use alternative fuels to heat your home
       </ul>
       <p class="govuk-body">You can upload multiple documents.</p>
       
-      {{ govukFileUpload({
-        id: "fuel-proof",
-        name: "fuel-proof",
-        label: {
-          text: "Upload a file"
-        }
-      }) }}
-      <p class="govuk-body">If you don't have this evidence now, you can upload it later.</p>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="file-upload">
+          Upload a file
+        </label>
+        <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple>
+      </div>
       {{ govukButton({
         text: "Confirm and continue"
       }) }}
