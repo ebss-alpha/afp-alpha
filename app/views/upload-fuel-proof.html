@@ -16,7 +16,41 @@ Upload proof that you use alternative fuels to heat your home
 {% endblock %}
 
 {% block content %}
-<form action="are-you-registered-for-council-tax">
+{% if not data.error %}
+{% if data['proof-of-fuel'] | length > 0 %}
+{% set message %}
+<p>Uploaded <strong>{{ data['proof-of-fuel'] }}</strong>. <a class="govuk-link govuk-link--no-visited-state"
+    href="#proof-of-fuel">Upload another.</a></p>
+{% endset %}
+{% endif %}
+{% if data.removed %}
+{% set message %}
+<p>Removed <strong>{{ data.removed }}</strong></p>
+{% endset %}
+{% endif %}
+{% if message %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukNotificationBanner({
+    html: message,
+    type: 'success'
+    }) }}
+  </div>
+</div>
+{% endif %}
+{% endif %}
+{% if data.error %}
+{{ govukErrorSummary({
+titleText: "There is a problem",
+errorList: [
+{
+text: "Choose a file to upload",
+href: "#proof-of-fuel"
+}
+]
+}) }}
+{% endif %}
+<form action="upload-check">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Upload proof that you use alternative fuels to heat your home</h1>
@@ -34,18 +68,27 @@ Upload proof that you use alternative fuels to heat your home
         <li>in PDF, .jpeg, .png or .doc format</li>
       </ul>
       <p class="govuk-body">You can upload multiple documents.</p>
-      
       <div class="govuk-form-group">
-        <label class="govuk-label" for="file-upload">
-          Upload a file
-        </label>
-        <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple>
+        <h2 id="upload-file" class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="proof-of-fuel">
+            Upload a file
+          </label>
+        </h2>
+        <input class="govuk-file-upload" id="proof-of-fuel" name="proof-of-fuel" type="file" multiple>
       </div>
-      {{ govukButton({
-        text: "Confirm and continue"
-      }) }}
+      <input type="submit" class="govuk-button govuk-button--secondary" name="upload-multiple" value="Upload">
+      {% if data['proofs-of-fuel'] | length > 0 %}
+      <h3 class="govuk-heading-s">Uploaded files</h3>
+      <ul class="govuk-list">
+        {% for file in data['proofs-of-fuel'] %}
+        <li>{{ file }} – <a class="govuk-link govuk-link--no-visited-state" href="/remove-file?filename={{file}}">Remove<span
+              class="govuk-visually-hidden"> {{ file }}</span></a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </div>
   </div>
+  <input class="govuk-button" type="submit" value="Continue" name="continue">
 </form>
 
 {% endblock %}
