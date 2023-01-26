@@ -150,6 +150,30 @@ router.get(['/contact-check'], (req, res) => {
   res.redirect('/what-are-your-bank-account-details')
 })
 
+router.get(['/upload-check'], (req, res) => {
+  req.session.data.removed = undefined
+  if (req.query.continue) {
+    res.redirect('/are-you-registered-for-council-tax')
+  } else {
+    if (req.query['upload-multiple'] !== undefined && req.query['proof-of-fuel'].length !== 0) {
+      req.session.data.error = false
+      if (req.session.data['proofs-of-fuel'] === undefined) req.session.data['proofs-of-fuel'] = []
+      req.session.data['proofs-of-fuel'] = req.session.data['proofs-of-fuel'].concat(req.session.data['proof-of-fuel'])
+      res.redirect('/upload-fuel-proof')
+    } else {
+      req.session.data.error = true
+      res.redirect('/upload-fuel-proof')
+    }
+  }
+})
+
+router.get(['/remove-file'], (req, res) => {
+  const indexToRemove = req.session.data['proofs-of-fuel'].indexOf(req.query.filename)
+  req.session.data['proofs-of-fuel'].splice(indexToRemove, 1)
+  req.session.data.removed = req.query.filename
+  res.redirect('/upload-fuel-proof')
+})
+
 router.get(['/council-tax-check', '/rates-check'], (req, res) => {
   const proofRequired = req.session.data['describe-where-you-live'] === 'care-home' || req.session.data['rates-or-council-tax'] === 'no'
   if (proofRequired) {
