@@ -5,27 +5,7 @@
 What is your full name?
 {% endblock %}
 
-{% set gotMainEbss = data['received-main-ebss'] == 'yes' %}-
-{% set useAlternativeFuel = data['do-you-use-one-of-these-fuels'] == 'yes' %}
-{% if gotMainEbss and useAlternativeFuel %}
-{% set backLink = 'upload-fuel-proof' %}
-{% elif not gotMainEbss and useAlternativeFuel %}
-{% set backLink = 'upload-fuel-proof' %}
-{% elif not gotMainEbss and not useAlternativeFuel %}
-{% set backLink = 'ebss-only' %}
-{% elif gotMainEbss and not useAlternativeFuel %}
-{% set backLink = 'cannot-apply' %}
-{% endif %}
-
-{% if data['proof-of-address-provided'] == 'yes' %}
-{% set backLink = 'upload-proof-of-address' %}
-{% else %}
-{% if data.locale == 'ni' %}
-{% set backLink = 'do-you-pay-rates' %}
-{% else %}
-{% set backLink = 'are-you-registered-for-council-tax' %}
-{% endif %}
-{% endif %}
+{% set backLink = 'are-you-receiving-dwp-benefits' %}
 
 {% from "./alphaPhase.html" import alphaPhase %}
 {% block beforeContent %}
