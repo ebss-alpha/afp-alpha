@@ -1,0 +1,61 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{% filter localise(data.locale) %}
+Are you receiving any Department for Work and Pensions (DWP) or His Majesty's Revenue and Customs (HMRC) benefits?
+{% endfilter %}
+{% endblock %}
+
+{% if data['proof-of-address-provided'] == 'yes' %}
+{% set backLink = 'upload-proof-of-address' %}
+{% else %}
+{% set backLink = 'are-you-registered-for-council-tax' %}
+{% endif %}
+
+{% from "./alphaPhase.html" import alphaPhase %}
+{% block beforeContent %}
+{{ alphaPhase() }}
+{{ govukBackLink({
+text: "Back",
+href: backLink
+}) }}
+{% endblock %}
+
+{% block content %}
+{% filter localise(data.locale) %}
+<form action="what-is-your-full-name">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukRadios({
+        name: "receiving-benefits",
+        hint: {
+          text: '<div class="govuk-!-margin-bottom-2">These include Universal Credit, the State Pension, Tax Credits and other welfare benefits or credits.</div><div>Telling us this will allow your local council to use DWPʼs records to confirm your address when processing your application.</div>' | safe
+        },
+        fieldset: {
+          classes: "govuk-radios--inline",
+          legend: {
+            text: "Are you receiving any Department for Work and Pensions (DWP) or His Majesty's Revenue and Customs (HMRC) benefits or credits?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </div>
+</form>
+{% endfilter %}
+{% endblock %}

@@ -179,7 +179,7 @@ router.get(['/council-tax-check', '/rates-check'], (req, res) => {
   if (proofRequired) {
     res.redirect('/upload-proof-of-address')
   } else {
-    res.redirect('/what-is-your-full-name')
+    res.redirect('/are-you-receiving-dwp-benefits')
   }
 })
 
