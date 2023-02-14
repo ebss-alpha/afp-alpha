@@ -201,6 +201,23 @@ No phone number provided
               }
             ]
           }
+        },
+        {
+          key: {
+            text: "Do you currently get benefits?"
+          },
+          value: {
+            html: data['receiving-benefits'] | capitalize
+          },
+          actions: {
+            items: [
+              {
+                href: "are-you-receiving-dwp-benefits",
+                text: "Change",
+                visuallyHiddenText: "your answer to 'Do you currently get benefits?'"
+              }
+            ]
+          }
         }
       ]
     }) }}
