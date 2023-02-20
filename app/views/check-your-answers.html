@@ -230,12 +230,34 @@ No phone number provided
 
     <h2 class="govuk-heading-m">Now send your application</h2>
 
-    <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-
+    <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details
+      you are providing are correct.</p>
+    <p class="govuk-body">You confirm that, to the best of your knowledge, you are eligible for this payment and are not in
+      one of the following groups:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>in accommodation provided by your employer including seasonal workers, service occupiers, security guards,
+        building caretakers</li>
+      <li>in a building where you act as a property guardian</li>
+      <li>in a business premises such as a pub or hotel where your address is the same as the business address</li>
+    </ul>
+    {{ govukWarningText({
+    text: "You can be prosecuted if you provide false or misleading information and any funds you’ve received will be
+    recovered.",
+    iconFallbackText: "Warning"
+    }) }}
     <form action="/confirmation" novalidate>
-
+    
       <input type="hidden" name="answers-checked" value="true">
-
+      {{ govukCheckboxes({
+        name: "declaration",
+        items: [
+          {
+            value: "declaration",
+            text: "I confirm these details are correct",
+            behaviour: "exclusive"
+          }
+        ]
+      }) }}
       {{ govukButton({
         text: "Accept and send"
       }) }}
