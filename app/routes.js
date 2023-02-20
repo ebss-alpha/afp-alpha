@@ -80,6 +80,9 @@ router.get(['/user-group-check'], (req, res) => {
     case 'house-or-flat-owned':
       res.redirect('/find-your-address')
       break
+    case 'temporary':
+      res.redirect('/what-date-did-you-move-in')
+      break
     case 'park-home':
       res.redirect('/find-your-address')
       break

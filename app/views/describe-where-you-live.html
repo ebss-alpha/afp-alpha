@@ -25,55 +25,59 @@ Describe where you live
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukRadios({
-        name: "describe-where-you-live",
-        hint: {
-          text: preamble | safe
+      name: "describe-where-you-live",
+      hint: {
+      text: preamble | safe
+      },
+      fieldset: {
+      legend: {
+      text: "Describe where you live",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+      }
+      },
+      items: [
+        {
+          value: "heat-network",
+          text: "in a home that has a heat network, communal or district heating"
         },
-        fieldset: {
-          legend: {
-            text: "Describe where you live",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
+        {
+          value: "park-home",
+          text: "in a residential park home"
         },
-        items: [
-          {
-            value: "house-or-flat-rented",
-            text: "in a rented property"
-          },
-          {
-            value: "house-or-flat-owned",
-            text: "in a property owned by me or someone else in my household"
-          },
-                {
-            value: "heat-network",
-            text: "in a home that has a heat network, communal or district heating"
-          },
-          {
-            value: "park-home",
-            text: "in a residential park home"
-          },
-          {
-            value: "care-home",
-            text: "in a care home"
-          },
-          {
-            value: "boat",
-            text: "on a boat"
-          },
-          {
-            value: "farm",
-            text: "on a farm"
-          },
-          {
-            value: "caravan",
-            text: "in a caravan or mobile home"
-          },
-          {
-            value: "other",
-            text: "somewhere that does not into any of these categories"
-          }
-        ]
+        {
+          value: "care-home",
+          text: "in a care home"
+        },
+        {
+          value: "boat",
+          text: "on a boat"
+        },
+        {
+          value: "farm",
+          text: "on a farm"
+        },
+        {
+          value: "caravan",
+          text: "in a caravan or mobile home"
+        },
+        {
+          value: "temporary",
+          text: "in temporary housing"
+        },
+        {
+          value: "house-or-flat-rented",
+          text: "in a rented property"
+        },
+        {
+          value: "house-or-flat-owned",
+          text: "in a property owned by me or someone else in my household"
+        },
+        {
+          value: "other",
+          text: "somewhere that does not into any of these categories"
+        }
+      ]
       }) }}
       {{ govukButton({
         text: "Continue"
