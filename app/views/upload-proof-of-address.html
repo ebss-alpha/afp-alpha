@@ -23,96 +23,9 @@ You need to upload proof of address
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">You need to upload proof of address</h1>
-      {% if data.locale == 'ni' %}
-        {% if data['describe-where-you-live'] == 'care-home' %}
-        <p class="govuk-body">
-          Upload an invoice for your care home fees from the past 3 months.
-        </p>
-        <p class="govuk-body">
-          It must show:
-        </p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>your name</li>
-          <li>the name and address of the care home</li>
-        </ul>
-        {% else %}
-        {% if data['rates-or-council-tax'] == 'no' %}
-        <h2 class="govuk-heading-m">
-          If you own your home
-        </h2>
-        <p class="govuk-body">
-          Upload both:
-        </p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>a proof of address</li>
-          <li>your rates exemption certificate</li>
-        </ul>
-        <h2 class="govuk-heading-m">
-          If you are a tenant
-        </h2>
-        <p class="govuk-body">
-          Upload 3 documents:
-        </p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>a proof of address</li>
-          <li>a photo ID</li>
-          <li>your tenancy agreement</li>
-        </ul>
-        {% else %}
-        <h2 class="govuk-heading-m">
-          If you own your home
-        </h2>
-        <p class="govuk-body">
-          Upload one proof of address.
-        </p>
-        <h2 class="govuk-heading-m">
-          If you are a tenant
-        </h2>
-        <p class="govuk-body">
-          Upload both:
-        </p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>a proof of address</li>
-          <li>a photo ID</li>
-        </ul>
-      {% endif %}
-      <h2 class="govuk-heading-m">Proofs of address</h2>
-      <p class="govuk-body">
-        The document must have your name and address on it.
-      </p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>utility bill - for example gas or electricity bill</li>
-        <li>bank account or credit card statement signed and stamped by bank official</li>
-        <li>hospital appointment notice</li>
-        <li>court notice</li>
-        <li>correspondence from a United Kingdom government department for example Northern Ireland domestic rates bill or HM
-        </li>
-        <li>Revenue and Customs (HMRC) income tax notification</li>
-        <li>correspondence from a Northern Ireland university confirming that you've been on a course of study for at least
-          the last six months</li>
-      </ul>
-      <h2 class="govuk-heading-m">Proofs of ID</h2>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>a UK, Irish or EEA driving licence (photographic part) (provisional accepted)</li>
-        <li>a UK, Irish or EU passport</li>
-        <li>an Electoral Identity Card</li>
-        <li>a Translink Senior SmartPass</li>
-        <li>a Translink 60+ SmartPass</li>
-        <li>a Translink War Disabled SmartPass</li>
-        <li>a Translink Blind Person’s SmartPass</li>
-      </ul>
-      {% endif %}
-      {% else %}
-      <p>You must upload a document with your name and address on it.</p>
-       <h2 class="govuk-heading-m">If you live in a care home</h2>
-    <p class="govuk-body">Upload an invoice for your care home fees from the past 3 months.</p>
-      <p>It must show:</p>  
-       <ul class="govuk-list govuk-list--bullet">
-        <li>your name</li>
-        <li>the name and address of the care home</li>
-      </ul>
-      <h2 class="govuk-heading-m">All other applicants</h2>
-      <p class="govuk-body">You can upload one of the following:</p>
+      
+      <p>You must provide a document with your name and address on it.</p>
+      <p>Upload one of the following:</p>  
       <ul class="govuk-list govuk-list--bullet">
         <li>full current UK driving licence (not a provisional driving licence)</li>
         <li>utility bill from the past 3 months (cannot be a mobile phone bill or credit card statement)</li>
@@ -121,7 +34,6 @@ You need to upload proof of address
         <li>council tax exemption proof such as a bill or letter</li>
         <li>signed, dated letter with a letterhead from a boat mooring provider showing your name, address and that you live permanently on a boat on a long-term residential mooring</li>
       </ul>
-      {% endif %}
        <p>Your document must be:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>no more than 10 MB</li>
